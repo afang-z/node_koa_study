@@ -4,10 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start":"node bin/www",
-    "dev":"cross-env NODE_ENV=dev ./node_modules/.bin/nodemon bin/www",
-    "prd":"cross-env NODE_ENV=production pm2 start bin/www ",
-    "test": ""
+    "start": "node bin/www",
+    "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon --inspect=9229  bin/www",
+    "prd": "cross-env NODE_ENV=production pm2 start bin/www ",
+    "lint": "eslint --ext .js ./src",
+    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors"
   },
   "repository": {
     "type": "git",
@@ -26,15 +27,28 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-convert": "^2.0.0",
+    "koa-generic-session": "^2.3.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^3.2.1",
     "koa-onerror": "^4.2.0",
+    "koa-redis": "^4.0.1",
     "koa-router": "^12.0.0",
     "koa-static": "^5.0.0",
-    "koa-views": "^8.0.0"
+    "koa-views": "^8.0.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.23.1"
   },
   "devDependencies": {
+    "ajv": "^8.11.2",
+    "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.3",
-    "nodemon": "^2.0.19"
-  }
+    "eslint": "^6.3.0",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.19",
+    "pre-commit": "^1.2.2",
+    "supertest": "^6.3.3"
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }
